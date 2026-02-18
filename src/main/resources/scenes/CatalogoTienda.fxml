@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.mycompany.controllers.CatalogoTiendaController">
+   <children>
+      <Pane fx:id="nombreT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #80F2D1;" />
+      <Pane fx:id="panel2" layoutX="400.0" layoutY="38.0" prefHeight="408.0" prefWidth="200.0" style="-fx-background-color: White;">
+         <children>
+            <ScrollPane fx:id="productos" layoutY="20.0" prefHeight="317.0" prefWidth="200.0" style="-fx-background-color: #9AA2FC;">
+               <content>
+                  <VBox fx:id="listaProductos" prefHeight="449.0" prefWidth="184.0" spacing="10.0" style="-fx-background-color: white;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <VBox fx:id="VBox1" alignment="BOTTOM_CENTER" layoutX="1.0" layoutY="337.0" prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="total" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="26.0" prefWidth="176.0" style="-fx-background-color: #00bfa5; -fx-text-fill: white; -fx-font-weight: bold;" text="Button" />
+                  <Region fx:id="region1" prefHeight="7.0" prefWidth="200.0" />
+                  <HBox fx:id="cantidad" alignment="CENTER" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #8e99af;">
+                     <children>
+                        <Label fx:id="cantidad1" text="Label" textFill="WHITE" />
+                        <Region fx:id="region2" prefHeight="31.0" prefWidth="130.0" />
+                        <Label fx:id="cantidad2" text="Label" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox fx:id="titulo2" layoutY="-2.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #5F948A;">
+               <children>
+                  <Label fx:id="productosT" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefHeight="26.0" prefWidth="202.0" text="Productos" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <VBox fx:id="fondo" layoutX="8.0" layoutY="43.0" prefHeight="396.0" prefWidth="381.0">
+         <children>
+            <HBox fx:id="buscadorP" alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="252.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+               <children>
+                  <TextField fx:id="texto1" prefHeight="26.0" prefWidth="174.0" promptText="Buscar productos" style="-fx-background-color: Transparent;" />
+               </children>
+            </HBox>
+            <ScrollPane fx:id="mostrador" fitToWidth="true" prefHeight="208.0" prefWidth="189.0" VBox.vgrow="ALWAYS">
+               <content>
+                  <FlowPane fx:id="mostrador2" hgap="20.0" minHeight="200.0" minWidth="200.0" rowValignment="TOP" vgap="20.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox fx:id="producto1" alignment="CENTER" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen1" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto2" alignment="CENTER" layoutX="30.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen2" fitHeight="100.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto3" alignment="CENTER" layoutX="140.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen3" fitHeight="106.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto4" alignment="CENTER" layoutX="140.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen4" fitHeight="79.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto5" alignment="CENTER" layoutX="140.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen5" fitHeight="93.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto6" alignment="CENTER" layoutX="140.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen6" fitHeight="88.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto7" alignment="CENTER" layoutX="140.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen7" fitHeight="86.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto8" alignment="CENTER" layoutX="140.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen8" fitHeight="79.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto9" alignment="CENTER" layoutX="140.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen9" fitHeight="59.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="producto10" alignment="CENTER" layoutX="140.0" layoutY="30.0" maxHeight="90.0" maxWidth="90.0" minHeight="90.0" minWidth="90.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <ImageView fx:id="imagen10" fitHeight="73.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
