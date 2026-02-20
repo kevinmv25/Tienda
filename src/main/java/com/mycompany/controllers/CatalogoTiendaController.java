@@ -29,7 +29,7 @@ public class CatalogoTiendaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (LabelCantidad != null) {
-            LabelCantidad.setText("Seleccione producto");
+            LabelCantidad.setText("Productos agregados");
         } else {
             System.err.println("ADVERTENCIA: no se encontro ningun articulo registrado");
         }
@@ -54,7 +54,6 @@ public class CatalogoTiendaController implements Initializable {
     
     private void actualizarContador() {
         int cantidad = listaProductos.getChildren().size();
-        // Cambié LabelProducto por LabelCantidad para que coincida con tu declaración arriba
         if (LabelCantidad != null) {
             LabelCantidad.setText(cantidad + " productos seleccionados");
         }
@@ -64,7 +63,7 @@ public class CatalogoTiendaController implements Initializable {
     private void handleCancelar() {
         listaProductos.getChildren().clear();
         if (LabelCantidad != null) {
-            LabelCantidad.setText("seleccione productos");
+            LabelCantidad.setText("Productos agregados");
         }
         System.out.println("Lista de productos limpiada.");
     }
