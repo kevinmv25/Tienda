@@ -29,9 +29,9 @@ public class CatalogoTiendaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (LabelCantidad != null) {
-            LabelCantidad.setText("0 productos seleccionados");
+            LabelCantidad.setText("Seleccione producto");
         } else {
-            System.err.println("ADVERTENCIA: LabelCantidad es null. Revisa el fx:id en Scene Builder.");
+            System.err.println("ADVERTENCIA: no se encontro ningun articulo registrado");
         }
     }
     
@@ -63,7 +63,6 @@ public class CatalogoTiendaController implements Initializable {
     @FXML
     private void handleCancelar() {
         listaProductos.getChildren().clear();
-        // Cambié LabelProducto por LabelCantidad
         if (LabelCantidad != null) {
             LabelCantidad.setText("seleccione productos");
         }
