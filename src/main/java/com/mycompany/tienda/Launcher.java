@@ -12,7 +12,7 @@ import lib.SqlLib;
 
 /**
  *
- * @author rojas
+* @author rojas
  */
 public class Launcher {
     private static SqlLib db;

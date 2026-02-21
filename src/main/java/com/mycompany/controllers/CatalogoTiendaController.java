@@ -39,7 +39,7 @@ public class CatalogoTiendaController implements Initializable {
     @FXML
    
     
-    private Map<String, Integer> carrito = new HashMap<>();
+    private Map<String, Integer> carrito = new HashMap<>(); //contador de veces que sucede un evento por asi decirlo
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,20 +61,21 @@ public class CatalogoTiendaController implements Initializable {
             
             SqlLib sql = SqlLib.getInstance("jdbc:mysql://localhost:3306/tienda", "root", "contraseña"); 
             
-            //cada que se presione el boton, mandara el nombre que guardo del btn y lo pasará como atributo
+            //cada que se presione el boton, mandara el nombre que guardo del btn y buscara en la base de datos y regresra en forma de array los datos
             String[] producto = sql.buscarProductoPorNombre(nombre); 
             
             if(producto != null){
-               String nombreProd = producto[1]; //el indice indica el dato 0: idProducto 1: nombre 2: precio etc
+               String nombreProd = producto[1]; //el indice indica el dato 0:idProducto          1:nombre          2: precio etc
                double precio = Double.parseDouble(producto[2]);
                // contar los productos
                carrito.put(nombreProd,
+                       //si ya existe suma 1 sino se queda en 0 
                        carrito.getOrDefault(nombreProd, 0)+1);
-               int cantidad = carrito.get(nombreProd);
+               
                
               
                
-               total = total + precio;
+               total = total + precio; //variable global qeu va sumando el total de los productos
                
                actualizarLista();
                
@@ -89,12 +90,14 @@ public class CatalogoTiendaController implements Initializable {
         
         
     }
-    
+    /**
+     * Este metodo actualiza la cantidad total de todos los productos que sean agregados
+     */
     private void actualizarContador() {
         int cantidadTotal = 0;
         // toma la cantidad de cada producto y la va sumando
-        for (int cant: carrito.values()){  
-            cantidadTotal += cant;
+        for (int cant: carrito.values()){ //obtiene el valor del hash(carrito) y 
+            cantidadTotal += cant; //va sumando los valores del hash ejemplo 3 atunes, 2 emrmeladas y el total es 5 productos (CANTIDAD TOTAL)
         }
         LabelCantidad.setText(cantidadTotal + "  productos");
     }
@@ -108,14 +111,16 @@ public class CatalogoTiendaController implements Initializable {
         LabelCantidad.setText("Productos");
         LabelVenta.setText("$ 0.00");
     }
-    
+    /**
+     * este metodo va actualizando la cantidad por producto
+     */
     private void actualizarLista(){
         listaProductos.getChildren().clear();
         
-        for(String nombre : carrito.keySet()){
-            int cantidad = carrito.get(nombre);
+        for(String nombre : carrito.keySet()){ //obtiene el nombre del producto 
+            int cantidadPorProducto = carrito.get(nombre); //obtendr el valor de las veces que se ha pulsado un mismo producto(SOLAMENTE POR PRODUCTO NO EN GENERAL
             
-            Label fila = new Label(nombre + "  x" + cantidad);
+            Label fila = new Label(nombre + "  x" + cantidadPorProducto);
             listaProductos.getChildren().add(fila);
         }
         actualizarContador();
