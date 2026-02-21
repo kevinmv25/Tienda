@@ -104,7 +104,7 @@ public class SqlLib {
     
     public List<String[]> cargarUsuariosDesdeBD() throws SQLException {
         List<String[]> usuarios = new ArrayList<>();
-        String query = "SELECT id_usuario, nombre, contrasena, rol FROM usuario WHERE is_deleted = 0";
+        String query = "SELECT idUsuario, nombre, contrasena, rol FROM usuario";
 
         // Ejemplo de conexión y consulta a la base de datos
         try (PreparedStatement statement = connection.prepareStatement(query); 
@@ -112,7 +112,7 @@ public class SqlLib {
 
             while (rs.next()) {
                 String[] usuario = new String[4];
-                usuario[0] = rs.getString("id_usuario");
+                usuario[0] = rs.getString("idUsuario");
                 usuario[1] = rs.getString("nombre");
                 usuario[2] = rs.getString("contrasena");
                 usuario[3] = rs.getString("rol");
@@ -129,5 +129,30 @@ public class SqlLib {
             System.out.println("Conexión cerrada.");
         }
     }
+    /**
+     * Este Metodo devuelve un array con el nombre del producto que se seleccione desde la otra clase CatalogoTiendController
+     * @param nombre
+     * @return 
+     */
+    public String[] buscarProductoPorNombre(String nombre) {
+        String sql = "SELECT idProducto, nombreProducto, precio FROM producto WHERE nombreProducto = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new String[] {
+                    rs.getString("idProducto"),
+                    rs.getString("nombreProducto"),
+                    rs.getString("precio")
+                };
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

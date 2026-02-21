@@ -9,12 +9,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lib.SqlLib;
 
 /**
  *
  * @author rojas
  */
 public class Tienda extends Application {
+    private static SqlLib db;
 
     @Override
     public void start(Stage stage) throws Exception {
