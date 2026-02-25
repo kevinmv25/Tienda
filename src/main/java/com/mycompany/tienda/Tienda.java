@@ -21,11 +21,11 @@ public class Tienda extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // Esta es la ruta que configuramos en la carpeta de tu proyecto
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/CatalogoTienda.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Login.fxml"));
         Parent root = loader.load();
         
         Scene scene = new Scene(root);
-        stage.setTitle("Catálogo de Mi Tienda");
+        stage.setTitle("Inicio de Sesión - Tienda de conveniencia");
         stage.setScene(scene);
         stage.show();
     }

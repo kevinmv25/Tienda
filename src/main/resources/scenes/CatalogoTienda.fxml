@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -16,10 +16,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.CatalogoTiendaController">
    <children>
-      <Pane fx:id="nombreT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #80F2D1;" />
+      <Pane fx:id="nombreT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #80F2D1;">
+         <children>
+            <Label layoutX="14.0" layoutY="8.0" prefHeight="21.0" prefWidth="224.0" text="Tienda de conveniencia" textFill="#758659">
+               <font>
+                  <Font name="Candara Bold" size="17.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <Pane fx:id="panel2" layoutX="400.0" layoutY="38.0" prefHeight="408.0" prefWidth="200.0" style="-fx-background-color: White;">
          <children>
-            <ScrollPane fx:id="productos" layoutY="20.0" prefHeight="317.0" prefWidth="200.0" style="-fx-background-color: #9AA2FC;">
+            <ScrollPane fx:id="productos" fitToWidth="true" layoutY="20.0" prefHeight="317.0" prefWidth="200.0" style="-fx-background-color: #9AA2FC;">
                <content>
                   <VBox fx:id="listaProductos" prefHeight="449.0" prefWidth="184.0" spacing="10.0" style="-fx-background-color: white;">
                      <padding>
@@ -59,11 +66,6 @@
       </Pane>
       <VBox fx:id="VBoxFondo" layoutX="8.0" layoutY="43.0" prefHeight="396.0" prefWidth="381.0">
          <children>
-            <HBox fx:id="buscadorP" alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="252.0" style="-fx-background-color: white; -fx-background-radius: 20;">
-               <children>
-                  <TextField fx:id="texto1" prefHeight="26.0" prefWidth="174.0" promptText="Buscar productos" style="-fx-background-color: Transparent;" />
-               </children>
-            </HBox>
             <ScrollPane fx:id="mostrador" fitToWidth="true" prefHeight="208.0" prefWidth="189.0" VBox.vgrow="ALWAYS">
                <content>
                   <FlowPane fx:id="mostrador2" hgap="20.0" minHeight="200.0" minWidth="200.0" rowValignment="TOP" vgap="20.0">
@@ -78,7 +80,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen1" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen1" fitHeight="39.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Atun.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -90,7 +95,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen11" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen11" fitHeight="53.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Maruchan.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -102,7 +110,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen12" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen12" fitHeight="75.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Aceite.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -114,7 +125,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen13" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen13" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Sal.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -126,7 +140,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen14" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen14" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Jabon.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -138,7 +155,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen15" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen15" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Servitoallas.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -150,7 +170,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen16" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen16" fitHeight="79.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Fabuloso.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -162,7 +185,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen17" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen17" fitHeight="72.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/CoffeeMate.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -174,7 +200,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen18" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen18" fitHeight="78.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Cereal.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
@@ -186,7 +215,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <ImageView fx:id="imagen19" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imagen19" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Mermelada.jpg" />
+                                       </image></ImageView>
                                  </children>
                               </VBox>
                            </graphic>
