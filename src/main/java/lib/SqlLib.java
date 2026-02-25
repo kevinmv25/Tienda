@@ -64,28 +64,23 @@ public class SqlLib {
 
     
     public boolean isValidCredentials(String username, String password) throws SQLException {
-        String query = "SELECT contrasena FROM usuario WHERE nombre = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, username);
-            ResultSet resultSet = statement.executeQuery();
+        String sql = "SELECT contrasena FROM usuario WHERE nombre = ?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, username);
 
-            if (resultSet.next()) {
-                String storedHash = resultSet.getString("contrasena");
-                if (BCrypt.checkpw(password, storedHash)) {
-                    return true;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return false;
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            String storedPassword = rs.getString("contrasena");
+
+            return storedPassword.equals(password); // comparación directa
         }
+
+        return false;
     }
 
     
-    public boolean createUser(int par, String role, String username, String password) {
+    public boolean crearUsuario(int par, String role, String username, String password) {
         String hashedPassword = generateHash(password);
         System.out.println(hashedPassword);
 
@@ -152,6 +147,22 @@ public class SqlLib {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public String getRole(String username) throws SQLException {     
+        String sql = "SELECT rol FROM usuario WHERE nombre = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String role = rs.getString("Rol");
+                return role;
+            } else {
+                return "nar";
+            }
+        }
     }
 
 
