@@ -8,7 +8,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +33,24 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    }
+    
+    
+    @FXML
+    private void regresarLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Login.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) txtNombre.getScene().getWindow();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.sizeToScene();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

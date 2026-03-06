@@ -14,48 +14,50 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.CatalogoTiendaController">
+<AnchorPane id="AnchorPane" prefHeight="446.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.CatalogoTiendaController">
    <children>
-      <Pane fx:id="nombreT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #80F2D1;">
+      <Pane fx:id="nombreT" prefHeight="38.0" prefWidth="650.0" style="-fx-background-color: #80F2D1;">
          <children>
             <Label layoutX="14.0" layoutY="8.0" prefHeight="21.0" prefWidth="224.0" text="Tienda de conveniencia" textFill="#758659">
                <font>
                   <Font name="Candara Bold" size="17.0" />
                </font>
             </Label>
-         </children></Pane>
-      <Pane fx:id="panel2" layoutX="400.0" layoutY="38.0" prefHeight="408.0" prefWidth="200.0" style="-fx-background-color: White;">
+            <Button fx:id="btnRegresar" layoutX="562.0" layoutY="6.0" mnemonicParsing="false" onAction="#regresarLogin" text="Regresar" />
+         </children>
+      </Pane>
+      <Pane fx:id="panel2" layoutX="400.0" layoutY="38.0" prefHeight="406.0" prefWidth="238.0" style="-fx-background-color: White;">
          <children>
-            <ScrollPane fx:id="productos" fitToWidth="true" layoutY="20.0" prefHeight="317.0" prefWidth="200.0" style="-fx-background-color: #9AA2FC;">
+            <ScrollPane fx:id="productos" fitToWidth="true" layoutY="22.0" prefHeight="315.0" prefWidth="251.0" style="-fx-background-color: #9AA2FC;">
                <content>
-                  <VBox fx:id="listaProductos" prefHeight="449.0" prefWidth="184.0" spacing="10.0" style="-fx-background-color: white;">
+                  <VBox fx:id="listaProductos" prefHeight="313.0" prefWidth="236.0" spacing="10.0" style="-fx-background-color: white;">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
                </content>
             </ScrollPane>
-            <VBox fx:id="VBox1" alignment="BOTTOM_CENTER" layoutX="1.0" layoutY="337.0" prefHeight="70.0" prefWidth="200.0">
+            <VBox fx:id="VBox1" alignment="BOTTOM_CENTER" layoutX="1.0" layoutY="337.0" prefHeight="26.0" prefWidth="251.0">
                <children>
-                  <HBox fx:id="HBoxVenta" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #00bfa5; -fx-padding: 10;">
+                  <HBox fx:id="HBoxVenta" prefHeight="38.0" prefWidth="237.0" style="-fx-background-color: #00bfa5; -fx-padding: 10;">
                      <children>
-                        <Label fx:id="LabelVenta" style="-fx-text-fill: white;" text="Venta" />
+                        <Label fx:id="LabelVenta" prefHeight="18.0" prefWidth="94.0" style="-fx-text-fill: white;" text="Venta" />
                         <Region fx:id="Region1" prefHeight="18.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="LabelVenta" style="-fx-text-fill: white;" text="Label" />
+                        <Label fx:id="LabelVenta" prefHeight="18.0" prefWidth="91.0" style="-fx-text-fill: white;" text="Label" />
                      </children>
                   </HBox>
-                  <HBox fx:id="HBoxCantidad" alignment="CENTER" prefHeight="0.0" prefWidth="200.0" style="-fx-background-color: cfd8dc; -fx-padding: 5 10 5 10;">
+                  <HBox fx:id="HBoxCantidad" alignment="CENTER" prefHeight="35.0" prefWidth="220.0" style="-fx-background-color: cfd8dc; -fx-padding: 5 10 5 10;">
                      <children>
-                        <Label fx:id="LabelCantidad" text="Label" textFill="WHITE" />
-                        <Region fx:id="Region2" prefHeight="26.0" prefWidth="26.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="ButtonCancelar" mnemonicParsing="false" onAction="#handleCancelar" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-cursor: hand;" text="Cancelar" />
+                        <Label fx:id="LabelCantidad" prefHeight="18.0" prefWidth="90.0" text="Label" textFill="WHITE" />
+                        <Region fx:id="Region2" prefHeight="26.0" prefWidth="75.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="ButtonCancelar" mnemonicParsing="false" onAction="#handleCancelar" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-cursor: hand;" text="Cancelar" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <HBox fx:id="titulo2" layoutY="-2.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #5F948A;">
+            <HBox fx:id="titulo2" layoutY="-2.0" prefHeight="25.0" prefWidth="251.0" style="-fx-background-color: #5F948A;">
                <children>
-                  <Label fx:id="productosT" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefHeight="26.0" prefWidth="202.0" text="Productos" textFill="WHITE">
+                  <Label fx:id="productosT" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefHeight="26.0" prefWidth="240.0" text="Productos" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -68,7 +70,7 @@
          <children>
             <ScrollPane fx:id="mostrador" fitToWidth="true" prefHeight="208.0" prefWidth="189.0" VBox.vgrow="ALWAYS">
                <content>
-                  <FlowPane fx:id="mostrador2" hgap="20.0" minHeight="200.0" minWidth="200.0" rowValignment="TOP" vgap="20.0">
+                  <FlowPane fx:id="mostrador2" hgap="20.0" minHeight="200.0" minWidth="200.0" prefHeight="444.0" prefWidth="382.0" rowValignment="TOP" vgap="20.0">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>

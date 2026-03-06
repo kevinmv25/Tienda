@@ -1,4 +1,4 @@
-package com.mycompany.controllers;
+    package com.mycompany.controllers;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,6 +18,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import lib.SqlLib;
+    
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,7 +43,7 @@ public class CatalogoTiendaController implements Initializable {
     private Label LabelVenta;
     
     @FXML
-   
+    private Button btnRegresar;
     
     private Map<String, Integer> carrito = new HashMap<>(); //contador de veces que sucede un evento por asi decirlo
 
@@ -52,6 +57,24 @@ public class CatalogoTiendaController implements Initializable {
             System.err.println("ADVERTENCIA: no se encontro ningun articulo registrado");
         }
     }
+    
+    @FXML
+    private void regresarLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Login.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) listaProductos.getScene().getWindow();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.sizeToScene();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     
     @FXML
     private void handleAgregarProducto(ActionEvent event) {
