@@ -103,14 +103,30 @@ public class LoginController  {
             return;
             
         }
+        if(fxml.equals("user")){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/CatalogoTienda.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btn_login.getScene().getWindow(); //JB1 ==  boton para iniciar sesion, cambiar
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.sizeToScene();
+            stage.setResizable(false);
+        }
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/CatalogoTienda.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) btn_login.getScene().getWindow(); //JB1 ==  boton para iniciar sesion, cambiar
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.sizeToScene();
-        stage.setResizable(false);
+        if(fxml.equals("admin")){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/admin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btn_login.getScene().getWindow(); //JB1 ==  boton para iniciar sesion, cambiar
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.sizeToScene();
+            stage.setResizable(false);
+            
+            
+        }
+       
+        
+        
     }
 
     
