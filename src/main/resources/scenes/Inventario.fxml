@@ -28,7 +28,7 @@
                <children>
                   <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#OnAgregar" prefWidth="130.0" text="Agregar Producto" />
                   <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#OnEliminar" prefWidth="130.0" text="Eliminar Producto" />
-                  <Button fx:id="btnCambios" mnemonicParsing="false" onAction="#OnCambios" prefWidth="130.0" text="Cambios" />
+                  <Button fx:id="btnCambios" mnemonicParsing="false" onAction="#abrirEditarProducto" prefWidth="130.0" text="Cambios" />
                </children>
             </VBox>
          </children>

@@ -18,8 +18,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -103,12 +105,46 @@ public class InventarioController implements Initializable {
         }
     }
     
+    public class EditarProductoController {
+
     @FXML
-    private void OnEliminar(ActionEvent event) {
-        // Por ahora puedes dejarlo vacío o con un print para probar
-        System.out.println("Botón eliminar presionado");
+    private TextField txtNombre;
+
+    @FXML
+    private TextField txtPrecio;
+
+    @FXML
+    private TextField txtCaducidad;
+
+    @FXML
+    private ChoiceBox<String> choiceTipo;
+
+    private Producto producto;
+
+    @FXML
+    public void initialize(){
+
+        choiceTipo.getItems().addAll(
+            "Bebidas",
+            "Comida",
+            "Electrónica",
+            "Limpieza"
+        );
+
     }
-    
+
+    public void setProducto(Producto producto){
+
+        this.producto = producto;
+
+        txtNombre.setText(producto.getNombre());
+        txtPrecio.setText(String.valueOf(producto.getPrecio()));
+        txtCaducidad.setText(producto.getCaducidad());
+
+        choiceTipo.setValue(producto.getTipo());
+    }
+
+}
     @FXML
     private void OnCambios(ActionEvent event) {
         // Por ahora puedes dejarlo vacío o con un print para probar

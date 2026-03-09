@@ -27,10 +27,10 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author rojas
+ * @author rojas, marcelo 
  */
 public class CatalogoTiendaController implements Initializable {
-    
+
     private double total =  0;
     
     @FXML

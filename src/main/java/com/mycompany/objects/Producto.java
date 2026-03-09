@@ -2,25 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.objets;
+package com.mycompany.objects;
 
 /**
  *
- * @author rojas
+ * @author rojas, marcelo 
  */
 public class Producto {
     private int id;
     private String nombre;
     private float precio;
     private String tipo;
-    private String caducidad; // Puedes usar String o LocalDate
+    private String cantidad; // Puedes usar String o LocalDate
 
-    public Producto(int id, String nombre, float precio, String tipo, String caducidad) {
+    public Producto(int id, String nombre, float precio, String tipo, String cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.tipo = tipo;
-        this.caducidad = caducidad;
+        this.cantidad = cantidad;
     }
 
     public int getId() {
@@ -55,16 +55,12 @@ public class Producto {
         this.tipo = tipo;
     }
 
-    public String getCaducidad() {
-        return caducidad;
-    }
-
-    public void setCaducidad(String caducidad) {
-        this.caducidad = caducidad;
-    }
-
     public String getCantidad() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
     
     

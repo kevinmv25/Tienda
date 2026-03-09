@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers;
 
+import com.mycompany.objets.Producto;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +26,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author rojas
+ * @author rojas, marcelo
  */
 public class AgregarController implements Initializable {
     
@@ -126,7 +128,39 @@ public class AgregarController implements Initializable {
             System.out.println("El precio debe ser un número válido");
         }
     }
+    
 
+    @FXML
+   private TableView<Producto> tablaP;
+    
+    @FXML
+    private void abrirEditarProducto() {
+
+    Producto productoSeleccionado = tablaP.getSelectionModel().getSelectedItem();
+
+    if (productoSeleccionado != null) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/EditarProducto.fxml"));
+            Parent root = loader.load();
+
+            EditarProductoController controller = loader.getController();
+            controller.setProducto(productoSeleccionado);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Editar Producto");
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    } else {
+        System.out.println("Selecciona un producto primero");
+    }
+}
     private void limpiarFormulario() {
         txtNombre.clear();
         txtPrecio.clear();
