@@ -15,7 +15,7 @@ import lib.SqlLib;
 * @author rojas
  */
 public class Launcher {
-    private static SqlLib db;
+    private static SqlLib sql;
     
     public static void main(String[] args) {
         String[] credentials = getDBCredentials(); // Obtener credenciales de la base de datos
@@ -26,7 +26,7 @@ public class Launcher {
 
         try {
             // Inicializar la conexión con la base de datos
-            db = SqlLib.getInstance(credentials[0], credentials[1], credentials[2]);
+            sql = SqlLib.getInstance(credentials[0], credentials[1], credentials[2]);
         } catch (SQLException e) {
             System.out.println("Url: " + credentials[0] + "\nUsuario: " + credentials[1]);
             System.out.println("Error: No se pudo conectar a la base de datos.");

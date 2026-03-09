@@ -4,7 +4,7 @@
  */
 package com.mycompany.controllers;
 
-import com.mycompany.objets.Producto;
+import com.mycompany.objects.Producto;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -45,21 +45,29 @@ public class InventarioController implements Initializable {
      * Initializes the controller class.
      */
     @Override
+   
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            sql = SqlLib.getInstance("jdbc:mysql://userT:contra123@localhost:3306/tienda", "userT", "contra123");
 
-            // LOS NOMBRES DEBEN COINCIDIR CON TU CLASE PRODUCTO.JAVA
-            colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));    // Antes tenías "nombreProducto"
+            sql = SqlLib.getInstance(
+                "jdbc:mysql://localhost:3306/tienda",
+                "root",
+                "Bebe2508_"
+            );
+
+            colNombre.setCellValueFactory(new PropertyValueFactory<>("nombreProducto"));
             colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-            colCategoria.setCellValueFactory(new PropertyValueFactory<>("tipo"));    // Antes tenías "tipoProducto"
+            colCategoria.setCellValueFactory(new PropertyValueFactory<>("tipoProducto"));
             colCaducidad.setCellValueFactory(new PropertyValueFactory<>("caducidad"));
 
             actualizarTabla();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    } 
+    }
+
+
     
     public void actualizarTabla() {
         listaProductos.clear();

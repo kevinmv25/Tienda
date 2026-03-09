@@ -4,28 +4,30 @@
  */
 package com.mycompany.controllers;
 
+import com.mycompany.objects.Producto;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lib.SqlLib;
 
 /**
  * FXML Controller class
  *
- * @author rojas
+ * @author rojas, marcelo
  */
 public class AgregarController implements Initializable {
     
@@ -34,9 +36,9 @@ public class AgregarController implements Initializable {
     @FXML private ImageView imgPreview;
     @FXML private ComboBox<String> cbCategoria;
 
+    private InventarioController principal;
     private File archivoImagenSeleccionado;
-    private InventarioController principal; // Solo una vez
-    private CatalogoTiendaController catalogoPrincipal;
+    private CatalogoTiendaController CatalogoPrincipal;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,81 +76,113 @@ public class AgregarController implements Initializable {
         }
     }
 
-    public void setControllerPrincipal(InventarioController principal) {
-        this.principal = principal;
-    }
-
-    public void setCatalogoPrincipal(CatalogoTiendaController catalogo) {
-        this.catalogoPrincipal = catalogo;
-    }
-    
     @FXML
-    private void seleccionarArchivo(ActionEvent event) {
+    private void seleccionarArchivo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar Imagen del Producto");
-
-        // Esto obliga a que se abra en la carpeta de imágenes de tu proyecto en NetBeans
-        File rutaInicial = new File("src/main/resources/productos");
-        if (rutaInicial.exists()) {
-            fileChooser.setInitialDirectory(rutaInicial);
-        }
-
+        
         fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg")
         );
 
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) txtNombre.getScene().getWindow();
         archivoImagenSeleccionado = fileChooser.showOpenDialog(stage);
 
         if (archivoImagenSeleccionado != null) {
-            // Mostramos la vista previa
             Image imagen = new Image(archivoImagenSeleccionado.toURI().toString());
             imgPreview.setImage(imagen);
         }
     }
+
+    public void setControllerPrincipal(InventarioController principal) {
+        this.principal = principal;
+    }
+    
+    public void setCatalogoPrincipal(CatalogoTiendaController catalogo) {
+        this.CatalogoPrincipal = catalogo;
+    }
+    
     
     @FXML
     private void guardarEnBaseDeDatos() {
+
         String nombre = txtNombre.getText();
         String precioText = txtPrecio.getText();
-        String categoria = cbCategoria.getValue(); 
+        String categoria = cbCategoria.getValue();
 
         if (nombre.isEmpty() || precioText.isEmpty() || categoria == null) {
-            System.out.println("Por favor llena todos los campos");
+            System.out.println("Por favor llena todos los campos, incluyendo la categoría");
             return;
         }
 
         try {
-            double precio = Double.parseDouble(precioText);
-            
-            // Obtenemos el nombre de la imagen para la BD
-            String nombreImagen = (archivoImagenSeleccionado != null) ? archivoImagenSeleccionado.getName() : "default.png";
 
-            // 1. Aquí irá tu SqlLib para el INSERT
-            // Ejemplo: sql.insertarProducto(nombre, precio, categoria, nombreImagen);
-            System.out.println("Guardando en BD: " + nombre + " Imagen: " + nombreImagen);
-            
-            // 2. REFLEJO EN INVENTARIO (Tabla)
-            if (principal != null) {
-                principal.actualizarTabla(); 
+            double precio = Double.parseDouble(precioText);
+
+            // Obtener conexión a la base de datos
+            SqlLib db = SqlLib.getInstance(
+                "jdbc:mysql://localhost:3306/tienda", //cambiar por tu usuario y contraseña de sql
+                "root",
+                "Bebe2508_"
+            );
+
+        // Guardar producto
+            boolean guardado = db.agregarProducto(nombre, precio, categoria);
+
+            if (guardado) {
+                System.out.println("Producto guardado correctamente");
+
+                // actualizar tabla del inventario
+                if (principal != null) {
+                    principal.actualizarTabla();
+                }
+
+                limpiarFormulario();
+
+            } else {
+            System.out.println("Error al guardar el producto");
             }
-            
-            // 3. REFLEJO EN CATÁLOGO (Cuadritos) - ¡ESTO FALTABA!
-            if (catalogoPrincipal != null) {
-                catalogoPrincipal.cargarProductosDinamicos(); 
-            }
-            
-            limpiarFormulario();
-            
-            // Tip: Es mejor cerrar la ventana para que el usuario vea la actualización
-            Stage stage = (Stage) txtNombre.getScene().getWindow();
-            stage.close();
-            
+
         } catch (NumberFormatException e) {
             System.out.println("El precio debe ser un número válido");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }
+}
 
+    
+
+    @FXML
+   private TableView<Producto> tablaP;
+    
+    @FXML
+    private void abrirEditarProducto() {
+
+    Producto productoSeleccionado = tablaP.getSelectionModel().getSelectedItem();
+
+    if (productoSeleccionado != null) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/EditarProducto.fxml"));
+            Parent root = loader.load();
+
+            EditarProductoController controller = loader.getController();
+            controller.setProducto(productoSeleccionado);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Editar Producto");
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    } else {
+        System.out.println("Selecciona un producto primero");
+    }
+}
     private void limpiarFormulario() {
         txtNombre.clear();
         txtPrecio.clear();
