@@ -18,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import lib.SqlLib;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
     
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,10 +29,10 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author rojas, marcelo 
+ * @author rojas
  */
 public class CatalogoTiendaController implements Initializable {
-
+    
     private double total =  0;
     
     @FXML
@@ -45,12 +47,17 @@ public class CatalogoTiendaController implements Initializable {
     @FXML
     private Button btnRegresar;
     
+    @FXML
+    private javafx.scene.layout.FlowPane contenedorBotones;
+    
     private Map<String, Integer> carrito = new HashMap<>(); //contador de veces que sucede un evento por asi decirlo
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LabelVenta.setText("$ 0.00");
-        
+
+        cargarProductosDinamicos(); 
+
         if (LabelCantidad != null) {
             LabelCantidad.setText("Productos agregados");
         } else {
@@ -75,6 +82,62 @@ public class CatalogoTiendaController implements Initializable {
         }
     }
 
+    public void cargarProductosDinamicos() {
+        contenedorBotones.getChildren().clear(); 
+        try {
+            String urlConCredenciales = "jdbc:mysql://userT:contra123@localhost:3306/tienda";
+            SqlLib sql = SqlLib.getInstance(urlConCredenciales, "userT", "contra123");
+
+            java.util.List<String[]> productos = sql.cargarProductosDesdeBD(); 
+
+            for (String[] p : productos) {
+                String nombre = p[1];
+                String precio = p[2];
+                String imagenNombre = p[4]; 
+
+                VBox card = new VBox(10);
+                card.setStyle("-fx-background-color: #F3E5F5; -fx-padding: 10; -fx-background-radius: 15; -fx-alignment: center;");
+
+                // --- LÓGICA DE IMAGEN BLINDADA ---
+                ImageView img = new ImageView();
+                try {
+                    // 1. Intentamos obtener el flujo del archivo
+                    var recurso = getClass().getResourceAsStream("/productos/" + imagenNombre);
+
+                    if (recurso != null) {
+                        // Si existe, lo cargamos
+                        img.setImage(new Image(recurso));
+                    } else {
+                        // Si es null (no existe), cargamos la de repuesto
+                        System.err.println("No se encontró: " + imagenNombre + ". Usando default.");
+                        var defaultRecurso = getClass().getResourceAsStream("/images/default.png");
+                        if (defaultRecurso != null) img.setImage(new Image(defaultRecurso));
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error al cargar imagen de " + nombre);
+                }
+                // ---------------------------------
+
+                img.setFitHeight(80);
+                img.setFitWidth(80);
+                img.setPreserveRatio(true);
+
+                Label lblNombre = new Label(nombre);
+                lblNombre.setStyle("-fx-font-weight: bold;");
+                Label lblPrecio = new Label("$" + precio);
+
+                Button btnAgregar = new Button("Agregar");
+                btnAgregar.setId(nombre); 
+                btnAgregar.setOnAction(this::handleAgregarProducto); 
+                btnAgregar.setStyle("-fx-background-color: #9370DB; -fx-text-fill: white; -fx-cursor: hand;");
+
+                card.getChildren().addAll(img, lblNombre, lblPrecio, btnAgregar);
+                contenedorBotones.getChildren().add(card);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
     @FXML
     private void handleAgregarProducto(ActionEvent event) {
@@ -212,5 +275,21 @@ public class CatalogoTiendaController implements Initializable {
         }
     }
     
+    /**
+     * Agrega los productos a la interfaz principal
+     */
+    @FXML
+    private void OnAbrirAgregar(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Agregar.fxml"));
+            Parent root = loader.load();
 
+            AgregarController ctrl = loader.getController();
+            ctrl.setCatalogoPrincipal(this);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) { e.printStackTrace(); }
+    }
 }

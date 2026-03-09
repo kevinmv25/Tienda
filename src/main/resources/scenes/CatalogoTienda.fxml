@@ -4,8 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -68,164 +66,12 @@
       </Pane>
       <VBox fx:id="VBoxFondo" layoutX="8.0" layoutY="43.0" prefHeight="396.0" prefWidth="381.0">
          <children>
-            <ScrollPane fx:id="mostrador" fitToWidth="true" prefHeight="208.0" prefWidth="189.0" VBox.vgrow="ALWAYS">
+            <ScrollPane fx:id="mostrador" fitToWidth="true" prefHeight="10000.0" prefWidth="382.0" VBox.vgrow="ALWAYS">
                <content>
-                  <FlowPane fx:id="mostrador2" hgap="20.0" minHeight="200.0" minWidth="200.0" prefHeight="444.0" prefWidth="382.0" rowValignment="TOP" vgap="20.0">
+                  <FlowPane fx:id="contenedorBotones" hgap="20.0" minHeight="200.0" minWidth="200.0" prefHeight="10000.0" prefWidth="366.0" rowValignment="TOP" vgap="20.0">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
-                     <children>
-                        <Button fx:id="Atun" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto1" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen1" fitHeight="39.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Atun.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="Maruchan" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto11" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen11" fitHeight="53.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Maruchan.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="Aceite" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto12" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen12" fitHeight="75.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Aceite.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="Sal" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto13" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen13" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Sal.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="Jabon" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto14" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen14" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Jabon.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="Servitoallas" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto15" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen15" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Servitoallas.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="Fabuloso" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto16" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen16" fitHeight="79.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Fabuloso.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="CoffeeMate" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto17" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen17" fitHeight="72.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/CoffeeMate.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="Cereal" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto18" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen18" fitHeight="78.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Cereal.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="Mermelada" mnemonicParsing="false" onAction="#handleAgregarProducto" prefHeight="87.0" prefWidth="89.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-                           <graphic>
-                              <VBox fx:id="producto19" alignment="CENTER" maxHeight="119.0" maxWidth="210.0" minHeight="61.0" minWidth="68.0" prefHeight="79.0" prefWidth="68.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <children>
-                                    <ImageView fx:id="imagen19" fitHeight="78.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Mermelada.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
-                     </children>
                   </FlowPane>
                </content>
             </ScrollPane>

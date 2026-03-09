@@ -62,10 +62,6 @@ public class Producto {
     public void setCaducidad(String caducidad) {
         this.caducidad = caducidad;
     }
-
-    public String getCantidad() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     
 }

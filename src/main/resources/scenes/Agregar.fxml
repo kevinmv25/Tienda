@@ -42,8 +42,8 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="262.0" prefWidth="230.0" spacing="20.0" style="-fx-background-color: #E6E6FA;">
                <children>
-                  <Button fx:id="btnCargarImagen" mnemonicParsing="false" style="-fx-background-color: #b3b7d7;" text="Seleccionar archivo..." textFill="WHITE" />
-                  <ImageView fx:id="ivPreview" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btnCargarImagen" mnemonicParsing="false" onAction="#seleccionarArchivo" style="-fx-background-color: #b3b7d7;" text="Seleccionar archivo..." textFill="WHITE" />
+                  <ImageView fx:id="imgPreview" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
                   <Label alignment="CENTER" prefHeight="18.0" prefWidth="317.0" text="Imagen del producto" />
                </children>
                <padding>
