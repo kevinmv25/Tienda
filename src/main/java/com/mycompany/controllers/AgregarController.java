@@ -4,7 +4,7 @@
  */
 package com.mycompany.controllers;
 
-import com.mycompany.objets.Producto;
+import com.mycompany.objects.Producto;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
