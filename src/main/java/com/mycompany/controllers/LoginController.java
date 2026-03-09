@@ -43,9 +43,13 @@ public class LoginController  {
     /**
      * Initializes the controller class.
      */
-    public void setDb()throws SQLException{
-        this.db = SqlLib.getInstance("", "", "");
-        
+    public void setDb() throws SQLException {
+        // Reemplaza con tus datos reales
+        String url = "jdbc:mysql://localhost:3306/tienda"; 
+        String user = "root"; 
+        String pass = "tu_password"; 
+
+        this.db = SqlLib.getInstance(url, user, pass);
     }
     
     @FXML
@@ -114,7 +118,7 @@ public class LoginController  {
         }
         
         if(fxml.equals("admin")){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/admin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Inventario.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) btn_login.getScene().getWindow(); //JB1 ==  boton para iniciar sesion, cambiar
             Scene scene = new Scene(root);

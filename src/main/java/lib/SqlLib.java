@@ -29,7 +29,6 @@ public class SqlLib {
         connect();
     }
 
-    
     private void connect() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
@@ -54,15 +53,12 @@ public class SqlLib {
         }
         return instance;
     }
-
-   
     
     public String generateHash(String password) {
         String salt = BCrypt.gensalt(12);
         return BCrypt.hashpw(password, salt);
     }
 
-    
     public boolean isValidCredentials(String username, String password) throws SQLException {
         String sql = "SELECT contrasena FROM usuario WHERE nombre = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -75,11 +71,9 @@ public class SqlLib {
 
             return storedPassword.equals(password); // comparación directa
         }
-
         return false;
     }
 
-    
     public boolean crearUsuario(int par, String role, String username, String password) {
         String hashedPassword = generateHash(password);
         System.out.println(hashedPassword);
@@ -149,6 +143,27 @@ public class SqlLib {
         return null;
     }
     
+    public List<String[]> cargarProductosDesdeBD() throws SQLException {
+        List<String[]> productos = new ArrayList<>();
+        
+        String query = "SELECT idProducto, nombreProducto, precio, tipoProducto, caducidad FROM producto";
+
+        try (PreparedStatement statement = connection.prepareStatement(query); 
+             ResultSet rs = statement.executeQuery()) {
+
+            while (rs.next()) {
+                String[] producto = new String[5];
+                producto[0] = rs.getString("idProducto");
+                producto[1] = rs.getString("nombreProducto");
+                producto[2] = rs.getString("precio");
+                producto[3] = rs.getString("tipoProducto");
+                producto[4] = rs.getString("caducidad");
+                productos.add(producto);
+            }
+        }
+        return productos;
+    }
+    
     public String getRole(String username) throws SQLException {     
         String sql = "SELECT rol FROM usuario WHERE nombre = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -164,6 +179,4 @@ public class SqlLib {
             }
         }
     }
-
-
 }
