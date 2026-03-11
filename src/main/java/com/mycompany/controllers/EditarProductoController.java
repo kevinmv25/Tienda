@@ -38,6 +38,12 @@ public class EditarProductoController {
     private ImageView imgProducto;
 
     private Producto producto;
+    
+    private InventarioController controllerPrincipal;
+
+    public void setControllerPrincipal(InventarioController controllerPrincipal) {
+        this.controllerPrincipal = controllerPrincipal;
+    }
 
     @FXML
     public void initialize() {

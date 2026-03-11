@@ -30,6 +30,12 @@ public class EliminarProductoController {
     
     @FXML
     private Button btnEliminar;
+    
+    private InventarioController controllerPrincipal;
+    
+    public void setControllerPrincipal(InventarioController controllerPrincipal) {
+        this.controllerPrincipal = controllerPrincipal;
+    }
 
     public void setProducto(Producto producto) {
         this.producto = producto;
@@ -52,13 +58,13 @@ public class EliminarProductoController {
 
             if (eliminado) {
                 System.out.println("Producto eliminado correctamente");
-            } else {
-                System.out.println("Error al eliminar producto");
+                if (controllerPrincipal != null) {
+                    controllerPrincipal.actualizarTabla();
+                }
             }
 
             Stage stage = (Stage) lblNombreProducto.getScene().getWindow();
             stage.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

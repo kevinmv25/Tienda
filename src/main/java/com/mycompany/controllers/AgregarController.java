@@ -52,6 +52,13 @@ public class AgregarController implements Initializable {
         cbCategoria.setItems(opciones);
     }
     
+    public void setControllerPrincipal(InventarioController principal) {
+        this.principal = principal;
+    }
+    
+    public void setCatalogoPrincipal(CatalogoTiendaController catalogo) {
+        this.CatalogoPrincipal = catalogo;
+    }
     
     @FXML
     private void regresarInventario() { // Le cambiamos el nombre para que sea claro
@@ -80,7 +87,19 @@ public class AgregarController implements Initializable {
     private void seleccionarArchivo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar Imagen del Producto");
-        
+
+        // 1. Detectar la ruta del proyecto y apuntar a src/main/resources/productos
+        String rutaBase = System.getProperty("user.dir");
+        File directorioInicial = new File(rutaBase + File.separator + "src" 
+                                        + File.separator + "main" 
+                                        + File.separator + "resources" 
+                                        + File.separator + "productos");
+
+        // 2. Si la carpeta existe físicamente, abrir ahí
+        if (directorioInicial.exists()) {
+            fileChooser.setInitialDirectory(directorioInicial);
+        }
+
         fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg")
         );
@@ -89,19 +108,11 @@ public class AgregarController implements Initializable {
         archivoImagenSeleccionado = fileChooser.showOpenDialog(stage);
 
         if (archivoImagenSeleccionado != null) {
+            // Mostramos la vista previa de la imagen seleccionada
             Image imagen = new Image(archivoImagenSeleccionado.toURI().toString());
             imgPreview.setImage(imagen);
         }
     }
-
-    public void setControllerPrincipal(InventarioController principal) {
-        this.principal = principal;
-    }
-    
-    public void setCatalogoPrincipal(CatalogoTiendaController catalogo) {
-        this.CatalogoPrincipal = catalogo;
-    }
-    
     
     @FXML
     private void guardarEnBaseDeDatos() {

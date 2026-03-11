@@ -118,21 +118,77 @@ public class InventarioController implements Initializable {
     
     @FXML
     private void OnEliminar(ActionEvent event) {
-        // Por ahora puedes dejarlo vacío o con un print para probar
-        System.out.println("");
+        Producto productoSeleccionado = tablaP.getSelectionModel().getSelectedItem();
+
+        if (productoSeleccionado == null) {
+            System.out.println("Selecciona un producto para eliminar.");
+            return;
+        }
+
+        try {
+            // Asegúrate de que la ruta al FXML sea la correcta (ej: /scenes/Eliminar.fxml)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/EliminarProducto.fxml"));
+            Parent root = loader.load();
+
+            // CAMBIO: Usar el nombre de la clase de Kevin
+            EliminarProductoController eliminarCtrl = loader.getController();
+
+            // CAMBIO: Kevin llamó al método 'setProducto'
+            eliminarCtrl.setProducto(productoSeleccionado);
+
+            // Recuerda que Kevin debe agregar el setControllerPrincipal como vimos antes
+            eliminarCtrl.setControllerPrincipal(this); 
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+            actualizarTabla(); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML
     private void OnCambios(ActionEvent event) {
-        // Por ahora puedes dejarlo vacío o con un print para probar
-        System.out.println("");
+        Producto productoSeleccionado = tablaP.getSelectionModel().getSelectedItem();
+
+        if (productoSeleccionado == null) {
+            System.out.println("Por favor, selecciona un producto para editar.");
+            return;
+        }
+
+        try {
+            // Asegúrate de que la ruta sea la de la ventana de Miguel (ej: /scenes/Editar.fxml)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/EditarProducto.fxml"));
+            Parent root = loader.load();
+
+            // CAMBIO: Usar el nombre de la clase de Miguel
+            EditarProductoController editarCtrl = loader.getController();
+
+            // CAMBIO: Miguel también usó 'setProducto'
+            editarCtrl.setProducto(productoSeleccionado);
+
+            // Recuerda que Miguel debe agregar el setControllerPrincipal en su clase
+            editarCtrl.setControllerPrincipal(this);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+            actualizarTabla(); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML
     private void regresarAlLogin(ActionEvent event) {
         try {
             // Cargamos la escena del Login
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/login.fxml"));
             Parent root = loader.load();
 
             // Obtenemos el Stage actual desde el botón que activó el evento
