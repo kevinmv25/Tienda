@@ -75,7 +75,6 @@ public class InventarioController implements Initializable {
             List<String[]> datos = sql.cargarProductosDesdeBD(); 
             for (String[] fila : datos) {
                 try {
-                    // Usamos Float.parseFloat para que coincida con tu clase Producto y tu SQL
                     int id = Integer.parseInt(fila[0]);
                     String nombre = fila[1];
                     float precio = Float.parseFloat(fila[2]); 
@@ -97,7 +96,6 @@ public class InventarioController implements Initializable {
     @FXML
     private void OnAgregar(ActionEvent event) {
         try {
-            // CAMBIO AQUÍ: La carpeta real es /scenes/
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Agregar.fxml"));
             Parent root = loader.load();
 
@@ -126,17 +124,11 @@ public class InventarioController implements Initializable {
         }
 
         try {
-            // Asegúrate de que la ruta al FXML sea la correcta (ej: /scenes/Eliminar.fxml)
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/EliminarProducto.fxml"));
             Parent root = loader.load();
 
-            // CAMBIO: Usar el nombre de la clase de Kevin
             EliminarProductoController eliminarCtrl = loader.getController();
-
-            // CAMBIO: Kevin llamó al método 'setProducto'
             eliminarCtrl.setProducto(productoSeleccionado);
-
-            // Recuerda que Kevin debe agregar el setControllerPrincipal como vimos antes
             eliminarCtrl.setControllerPrincipal(this); 
 
             Stage stage = new Stage();
@@ -160,17 +152,11 @@ public class InventarioController implements Initializable {
         }
 
         try {
-            // Asegúrate de que la ruta sea la de la ventana de Miguel (ej: /scenes/Editar.fxml)
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/EditarProducto.fxml"));
             Parent root = loader.load();
-
-            // CAMBIO: Usar el nombre de la clase de Miguel
+            
             EditarProductoController editarCtrl = loader.getController();
-
-            // CAMBIO: Miguel también usó 'setProducto'
             editarCtrl.setProducto(productoSeleccionado);
-
-            // Recuerda que Miguel debe agregar el setControllerPrincipal en su clase
             editarCtrl.setControllerPrincipal(this);
 
             Stage stage = new Stage();

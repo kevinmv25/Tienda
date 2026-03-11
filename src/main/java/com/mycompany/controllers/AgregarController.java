@@ -133,7 +133,6 @@ public class AgregarController implements Initializable {
             double precio = Double.parseDouble(precioText);
             String caducidad = fechaSeleccionada.toString();
 
-            // LOGICA DE IMAGEN: Si no seleccionó una, usamos una por defecto
             String nombreImagen = (archivoImagenSeleccionado != null) 
                                  ? archivoImagenSeleccionado.getName() 
                                  : "default.png";
@@ -145,9 +144,6 @@ public class AgregarController implements Initializable {
             );
             
             boolean guardado = db.agregarProducto(nombre, precio, categoria, caducidad);
-
-            // OPCIÓN B: Si agregaste una columna nueva para la fecha, tendrías que pasar 5 parámetros
-            // boolean guardado = db.agregarProducto(nombre, precio, categoria, caducidad, nombreImagen);
 
             if (guardado) {
                 System.out.println("Producto guardado: " + nombre + " | Imagen: " + nombreImagen);
