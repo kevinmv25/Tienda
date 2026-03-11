@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.EliminarProductoController">
    <children>
-      <Label layoutX="26.0" layoutY="23.0" prefHeight="38.0" prefWidth="366.0" text="Estás seguro que quieres eliminar este producto?" textAlignment="CENTER">
+      <Label fx:id="lblNombreProducto" layoutX="26.0" layoutY="23.0" prefHeight="38.0" prefWidth="366.0" text="Estás seguro que quieres eliminar este producto?" textAlignment="CENTER">
          <font>
             <Font name="Arial" size="16.0" />
          </font>

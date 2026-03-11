@@ -222,22 +222,33 @@ public class SqlLib {
     }
 
     // AGREGAR PRODUCTO
-    public boolean agregarProducto(String nombre, double precio, String categoria) {
-
-        String sql = "INSERT INTO producto (nombreProducto, precio, tipoProducto) VALUES (?, ?, ?)";
+    public boolean agregarProducto(String nombre, double precio, String categoria, String caducidad) {
+        String sql = "INSERT INTO producto (nombreProducto, precio, tipoProducto, caducidad) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-
             ps.setString(1, nombre);
             ps.setDouble(2, precio);
             ps.setString(3, categoria);
+            ps.setString(4, caducidad);
 
             ps.executeUpdate();
-
             return true;
-
         } catch (SQLException e) {
-
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean actualizarProducto(int id, String nombre, double precio, String categoria, String caducidad) {
+        String sql = "UPDATE producto SET nombreProducto = ?, precio = ?, tipoProducto = ?, caducidad = ? WHERE idProducto = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            ps.setDouble(2, precio);
+            ps.setString(3, categoria);
+            ps.setString(4, caducidad);
+            ps.setInt(5, id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }

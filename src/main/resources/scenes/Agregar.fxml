@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -11,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.AgregarController">
+<AnchorPane id="AnchorPane" prefHeight="453.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.controllers.AgregarController">
    <children>
-      <HBox prefHeight="46.0" prefWidth="500.0" style="-fx-background-color: gray;">
+      <HBox prefHeight="47.0" prefWidth="530.0" style="-fx-background-color: gray;">
          <children>
             <Label text="Agregar producto" textFill="WHITE">
                <font>
@@ -25,7 +26,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="TOP_CENTER" layoutY="46.0" prefHeight="301.0" prefWidth="500.0" spacing="40.0">
+      <HBox alignment="TOP_CENTER" layoutY="46.0" prefHeight="346.0" prefWidth="530.0" spacing="40.0">
          <children>
             <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="200.0" prefHeight="262.0" prefWidth="226.0" spacing="10.0" style="-fx-background-color: #D8BFD8;">
                <children>
@@ -35,6 +36,7 @@
                   <TextField fx:id="txtPrecio" promptText="Ej. 22.30" />
                   <Label alignment="CENTER" layoutX="30.0" layoutY="63.0" prefHeight="18.0" prefWidth="317.0" text="Categoria" />
                   <ComboBox fx:id="cbCategoria" prefWidth="150.0" style="-fx-border-color: #9370DB; -fx-border-radius: 5;" />
+                  <DatePicker fx:id="dpCaducidad" promptText="Selecciona fecha" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -55,7 +57,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER" layoutY="348.0" prefHeight="58.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #fae8e8;">
+      <HBox alignment="CENTER" layoutY="394.0" prefHeight="58.0" prefWidth="530.0" spacing="20.0" style="-fx-background-color: #fae8e8;">
          <children>
             <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarEnBaseDeDatos" style="-fx-background-color: #f4c3d0;" text="Guardar producto" />
             <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#regresarInventario" style="-fx-background-color: #f4c3d0;" text="Regresar" />

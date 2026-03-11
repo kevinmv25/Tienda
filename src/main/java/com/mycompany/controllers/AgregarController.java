@@ -23,6 +23,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lib.SqlLib;
+import java.time.LocalDate;
+import javafx.scene.control.DatePicker;
 
 /**
  * FXML Controller class
@@ -35,6 +37,7 @@ public class AgregarController implements Initializable {
     @FXML private TextField txtPrecio;
     @FXML private ImageView imgPreview;
     @FXML private ComboBox<String> cbCategoria;
+    @FXML private DatePicker dpCaducidad;
 
     private InventarioController principal;
     private File archivoImagenSeleccionado;
@@ -116,42 +119,44 @@ public class AgregarController implements Initializable {
     
     @FXML
     private void guardarEnBaseDeDatos() {
-
         String nombre = txtNombre.getText();
         String precioText = txtPrecio.getText();
         String categoria = cbCategoria.getValue();
+        LocalDate fechaSeleccionada = dpCaducidad.getValue();
 
-        if (nombre.isEmpty() || precioText.isEmpty() || categoria == null) {
-            System.out.println("Por favor llena todos los campos, incluyendo la categoría");
+        if (nombre.isEmpty() || precioText.isEmpty() || categoria == null || fechaSeleccionada == null) {
+            System.out.println("Por favor llena todos los campos, incluyendo la fecha de caducidad");
             return;
         }
 
         try {
-
             double precio = Double.parseDouble(precioText);
+            String caducidad = fechaSeleccionada.toString();
 
-            // Obtener conexión a la base de datos
+            // LOGICA DE IMAGEN: Si no seleccionó una, usamos una por defecto
+            String nombreImagen = (archivoImagenSeleccionado != null) 
+                                 ? archivoImagenSeleccionado.getName() 
+                                 : "default.png";
+
             SqlLib db = SqlLib.getInstance(
-                "jdbc:mysql://localhost:3306/tienda", //cambiar por tu usuario y contraseña de sql
+                "jdbc:mysql://localhost:3306/tienda", 
                 "root",
                 "Bebe2508_"
             );
+            
+            boolean guardado = db.agregarProducto(nombre, precio, categoria, caducidad);
 
-        // Guardar producto
-            boolean guardado = db.agregarProducto(nombre, precio, categoria);
+            // OPCIÓN B: Si agregaste una columna nueva para la fecha, tendrías que pasar 5 parámetros
+            // boolean guardado = db.agregarProducto(nombre, precio, categoria, caducidad, nombreImagen);
 
             if (guardado) {
-                System.out.println("Producto guardado correctamente");
-
-                // actualizar tabla del inventario
+                System.out.println("Producto guardado: " + nombre + " | Imagen: " + nombreImagen);
                 if (principal != null) {
                     principal.actualizarTabla();
                 }
-
                 limpiarFormulario();
-
             } else {
-            System.out.println("Error al guardar el producto");
+                System.out.println("Error al guardar en MySQL");
             }
 
         } catch (NumberFormatException e) {
@@ -159,7 +164,7 @@ public class AgregarController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-}
+    }
 
     
 
@@ -194,12 +199,13 @@ public class AgregarController implements Initializable {
         System.out.println("Selecciona un producto primero");
     }
 }
+    
     private void limpiarFormulario() {
         txtNombre.clear();
         txtPrecio.clear();
-        cbCategoria.getSelectionModel().clearSelection(); // <--- También limpiamos el combo
+        cbCategoria.getSelectionModel().clearSelection();
+        dpCaducidad.setValue(null);
         imgPreview.setImage(null);
         archivoImagenSeleccionado = null;
-    }  
-    
+    }
 }

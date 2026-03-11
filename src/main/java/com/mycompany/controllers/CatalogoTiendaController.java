@@ -93,28 +93,42 @@ public class CatalogoTiendaController implements Initializable {
             for (String[] p : productos) {
                 String nombre = p[1];
                 String precio = p[2];
-                String imagenNombre = p[4]; 
+                String datoDeBD = p[4]; // Aquí viene la fecha (ej: 2026-06-01) o null
+
+                // --- NUEVO PARCHE: Traductor de Imagen ---
+                String imagenNombre;
+                if (datoDeBD != null && datoDeBD.contains("-")) { 
+                    // Si el dato tiene un guion, es una fecha. 
+                    // Entonces usamos el nombre del producto + .jpg
+                    imagenNombre = nombre + ".jpg"; 
+                } else if (datoDeBD == null || datoDeBD.isEmpty()) {
+                    imagenNombre = "default.png";
+                } else {
+                    // Si ya tiene el nombre correcto (ej: Aceite.jpg), lo dejamos así
+                    imagenNombre = datoDeBD;
+                }
 
                 VBox card = new VBox(10);
                 card.setStyle("-fx-background-color: #F3E5F5; -fx-padding: 10; -fx-background-radius: 15; -fx-alignment: center;");
 
-                // --- LÓGICA DE IMAGEN BLINDADA ---
                 ImageView img = new ImageView();
                 try {
-                    // 1. Intentamos obtener el flujo del archivo
+                    // Ahora buscará "Jugo.jpg" en lugar de "2026-06-01"
                     var recurso = getClass().getResourceAsStream("/productos/" + imagenNombre);
 
+                    if (recurso == null) {
+                        recurso = getClass().getResourceAsStream("/images/" + imagenNombre);
+                    }
+
                     if (recurso != null) {
-                        // Si existe, lo cargamos
                         img.setImage(new Image(recurso));
                     } else {
-                        // Si es null (no existe), cargamos la de repuesto
-                        System.err.println("No se encontró: " + imagenNombre + ". Usando default.");
+                        // Si no existe el archivo "Nombre.jpg", ponemos la de repuesto
                         var defaultRecurso = getClass().getResourceAsStream("/images/default.png");
                         if (defaultRecurso != null) img.setImage(new Image(defaultRecurso));
                     }
                 } catch (Exception e) {
-                    System.err.println("Error al cargar imagen de " + nombre);
+                    System.err.println("Error con " + nombre);
                 }
                 // ---------------------------------
 
